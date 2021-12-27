@@ -1,64 +1,112 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import { useSelector } from 'react-redux';
+import '../styles/dataGrid.css'
 
+const common =(cellValues) => {
+    return (
+      <div
+        style={{
+          color: "blue",
+          fontSize: 15,
+          width: "100%",
+          textAlign: "center"
+        }}
+      >
+        {cellValues.value}
+      </div>
+    );
+  }
 
 const columns = [
-  { field: 'id', headerName: 'Country', minWidth: 150 },
-  { field: 'firstName', headerName: 'Total Confirmed', minWidth: 150 },
-  { field: 'lastName', headerName: 'Total Recovered', minWidth: 150 },
-  {
-    field: 'age',
-    headerName: 'Total Deaths',
-    type: 'number',
-    minWidth: 150
-  },
-  {
-    field: 'fullName',
-    headerName: 'New Confirmed',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    minWidth: 150,
-    valueGetter: (params) =>
-      `${params.getValue(params.id, 'firstName') || ''} ${
-        params.getValue(params.id, 'lastName') || ''
-      }`,
-  },
-  {
-    field: 'newrecovered',
-    headerName: 'New Recovered',
-    type: 'number',
-    minWidth: 150,
-  },
-  {
-    field: 'newdeaths',
-    headerName: 'New Deaths',
-    type: 'number',
-    minWidth: 150,
-  }
+    { field: 'id', headerName: 'Country', minWidth: 150, headerAlign: 'center',headerClassName: 'super-app-theme--header',
+    renderCell: common },
+    { field: 'tconfirmed', headerName: 'Total Confirmed', minWidth: 150, headerAlign: 'center', headerClassName: 'super-app-theme--header',
+    renderCell: common},
+    { field: 'trecovered', headerName: 'Total Recovered', minWidth: 150, headerAlign: 'center', headerClassName: 'super-app-theme--header',
+    renderCell: common},
+    {
+        field: 'tdeaths',
+        headerName: 'Total Deaths',
+        type: 'number',
+        minWidth: 150,
+        headerAlign: 'center',
+        headerClassName: 'super-app-theme--header',
+        renderCell: common
+    },
+    {
+        field: 'nconfirmed',
+        headerName: 'New Confirmed',
+        description: 'This column has a value getter and is not sortable.',
+        sortable: false,
+        minWidth: 150, headerAlign: 'center',
+        headerClassName: 'super-app-theme--header',
+        renderCell: common
+    },
+    {
+        field: 'newrecovered',
+        headerName: 'New Recovered',
+        type: 'number',
+        minWidth: 180,
+        headerAlign: 'center',
+        headerClassName: 'super-app-theme--header',
+        renderCell:common
+    },
+    {
+        field: 'newdeaths',
+        headerName: 'New Deaths',
+        type: 'number',
+        minWidth: 150,
+        headerAlign: 'center',
+        headerClassName: 'super-app-theme--header',
+        renderCell: common
+    }
 ];
 
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
+
+
 
 export default function DataTable() {
-  return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        pageSize={5}
-        rowsPerPageOptions={[5]}
-        
-      />
-    </div>
-  );
+    const covidData = useSelector(state => state.covidData)
+    const isDataLoaded = useSelector(state => state.isDataLoaded)
+    const rows = [
+
+    ];
+   
+    isDataLoaded&& covidData.Data.Countries.forEach(function(eachData) {
+        let row = {
+            id: eachData.Country,
+            tconfirmed: eachData.TotalConfirmed,
+            trecovered: eachData.TotalRecovered,
+            tdeaths: eachData.TotalDeaths,
+            nconfirmed: eachData.NewConfirmed,
+            newrecovered: eachData.NewRecovered,
+            newdeaths: eachData.NewDeaths
+        }
+        rows.push(row);
+    });
+
+    return (
+        <div style={{ height: 400, width: '100%', textAlign: 'center',margin:'auto' }}>
+            <DataGrid
+                rowHeight={60}
+                rows={rows}
+                columns={columns}
+                pageSize={10}
+                rowsPerPageOptions={[5]}
+                sx={{
+                    boxShadow: 7,
+                    border: 2,
+                    borderColor: 'primary.light',
+                    '& .MuiDataGrid-cell:hover': {
+                        color: 'primary.main',
+                   
+                    },
+                    '& .super-app-theme--header': {
+                        backgroundColor: 'rgba(255, 7, 0, 0.55)',
+                      },
+                }}
+            />
+        </div>
+    );
 }

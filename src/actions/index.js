@@ -9,3 +9,8 @@ export const isDataLoading=()=>{
         type: "ISDATALOADING"
     }
 }
+export const isDataLoaded=()=>{
+    return{
+        type: "ISDATALOADED"
+    }
+}

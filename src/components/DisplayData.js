@@ -1,9 +1,9 @@
 import React from 'react'
-import DataGrid from './DataGrid'
+import DataTable from './DataGrid'
 function DisplayData() {
     return (
         <div>
-           <DataGrid/>
+           <DataTable/>
         </div>
     )
 }

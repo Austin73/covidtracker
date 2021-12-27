@@ -5,6 +5,7 @@ import allReducers from "./reducers";
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk' ;
 import FetchData from "./components/FetchData";
+import { MapContainer, TileLayer,MapConsumer } from 'react-leaflet';
 const store =createStore(allReducers,applyMiddleware(thunk))
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
     <div className="App">
          
      <NavBar/>
+    
      <Header/>
      <FetchData/>
     </div></Provider>

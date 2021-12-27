@@ -1,6 +1,4 @@
-import { isDataLoading,setCovidData } from "../actions"
-
-
+import { isDataLoaded, isDataLoading,setCovidData } from "../actions"
 
 function fetchCovidData(city) {
 
@@ -18,6 +16,7 @@ function fetchCovidData(city) {
             console.log(data)
             console.log("int fetch funciton")
             dispatch(setCovidData(data))
+            dispatch(isDataLoaded())
         })
         
     }
