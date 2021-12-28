@@ -1,15 +1,13 @@
 import React from 'react'
-import { MotionPhotosAuto } from '@mui/icons-material'
+import spinner from '../assests/Spinner.gif'
 
-const spinTransition = {
-    loop: Infinity,
-    ease: "linear",
-    duration: 1,
-  }
 function DataLoading() {
     return (
-        <div>
-            <MotionPhotosAuto/>
+        <div style={{
+            textAlign:"center",
+            
+        }}>
+           <img src={spinner} width="30%"/>
         </div>
     )
 }

@@ -3,16 +3,10 @@ import { useDispatch } from 'react-redux'
 import fetchCovidData from '../apicall/FetchCovidData'
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import DisplayData from './DisplayData'
+
 import DataTable from './DataGrid'
 import DataLoading from './DataLoading'
 
-
-const spinTransition = {
-  loop: Infinity,
-  ease: "linear",
-  duration: 1,
-}
 function FetchData() {
 
     const dispatch = useDispatch()
@@ -26,7 +20,7 @@ function FetchData() {
         <div>
          {
              //Condition to display data based on the fetched data
-             covidData.isLoading ? "Data Loading" : (<DataTable/>)
+             covidData.isLoading ? <DataLoading/> : (<DataTable/>)
          }
         </div>
     )
