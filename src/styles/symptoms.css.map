@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAA;EACL,OAAO,EAAE,IAAI;EACb,SAAS,EAAE,MAAM;EACjB,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,KAAK,EAAE,IAAI;EAEX,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,QAAQ;CAIlB;;AAZD,AASI,SATK,CASL,GAAG,CAAA;EACC,MAAM,EAAE,KAAK;CAChB",
+    "sources": [
+        "symptoms.scss"
+    ],
+    "names": [],
+    "file": "symptoms.css"
+}

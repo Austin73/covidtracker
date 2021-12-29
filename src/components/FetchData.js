@@ -14,7 +14,7 @@ function FetchData() {
 
     useEffect(() => {
        dispatch(fetchCovidData())
-    }, [])
+    }, [dispatch])
 
     return (
         <div>

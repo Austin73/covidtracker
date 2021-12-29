@@ -7,7 +7,7 @@ function DataLoading() {
             textAlign:"center",
             
         }}>
-           <img src={spinner} width="30%"/>
+           <img src={spinner} width="30%" alt='Data Loading'/>
         </div>
     )
 }

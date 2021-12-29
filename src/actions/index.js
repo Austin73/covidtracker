@@ -1,3 +1,5 @@
+
+
 export const setCovidData=(data)=>{
     return{
         type:"SETCOVIDDATA",
@@ -12,5 +14,11 @@ export const isDataLoading=()=>{
 export const isDataLoaded=()=>{
     return{
         type: "ISDATALOADED"
+    }
+}
+export const setNavButton=(number)=>{
+    return{
+        type: "SETNAVBUTTON",
+        payload:number
     }
 }
